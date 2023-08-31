@@ -1,27 +1,29 @@
 
 import React from "react";
-import './Trailer.css';
 
-function Trailer({movie}) {
+
+function Trailer({ movie }) {
 
 
 	const nullvalue = movie[0];
+	// console.log(nullvalue)
 
 
 	return (
 		<div className="container" >
 			<div className="video-responsive">
 				{
-					
+					nullvalue === undefined ? <div className="trailernot"><h3> trailer not found</h3></div> : <iframe
+						width="853"
+						height="480"
+						src={`https://www.youtube.com/embed/${nullvalue.key}?rel=0&autoplay=1&mute=1;`}
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+						allowFullScreen
+						className="trailer"
+						title="Embedded youtube"
+					/>
 				}
-				<iframe
-					width="853"
-					height="480"
-					src={`https://www.youtube.com/embed/${props.movie.key}`}
-					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-					allowFullScreen
-					title="Embedded youtube"
-				/>				
+
 			</div>
 		</div>
 	);
