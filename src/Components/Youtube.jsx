@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import Moviecard1 from "./Moviecard1";
 
@@ -6,21 +6,24 @@ function Youtube(props) {
   const [search, setSearch] = useState("");
   const [movie, setmovie] = useState([]);
 
+  const fetchmovie = useCallback(async () => {
+    if (search) {
+      const res = await axios.get(
+        `https://api.themoviedb.org/3/search/movie?query=${search}&api_key=95ac473e2ad8432c57596d8957973bba`
+      );
+      setmovie(res.data.results);
+    }
+  }, [search]);
+
   useEffect(() => {
     setSearch(props.sendData);
     fetchmovie();
-  }, [props.sendData]);
+  }, [props.sendData, fetchmovie]);
 
-  const fetchmovie = async () => {
-    const res = await axios.get(
-      `https://api.themoviedb.org/3/search/movie?query=${search}&api_key=95ac473e2ad8432c57596d8957973bba`
-    );
-    setmovie(res.data.results);
-  };
 
   return (
     <div className="container">
-      {search === undefined ? (
+      {search === undefined || search === "" ? (
         <div className="intro">
           <h2>Welcome to My Movie App</h2>
           <p>

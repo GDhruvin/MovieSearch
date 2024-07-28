@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-function Header(props) {
+function Header({ sendData }) {
   const [passData, setPassData] = useState(undefined);
 
   const handleChange = (value) => {
@@ -9,8 +9,8 @@ function Header(props) {
   };
 
   useEffect(() => {
-    props.sendData(passData);
-  }, [passData]);
+    sendData(passData);
+  }, [passData, sendData]);
 
   return (
     <div className="alert alert-primary sticky-top mainnav">
