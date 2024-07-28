@@ -6,7 +6,6 @@ function Trailer({ movie }) {
 
 
 	const nullvalue = movie[0];
-	// console.log(nullvalue)
 
 
 	return (

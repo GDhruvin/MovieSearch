@@ -8,7 +8,9 @@ function Moviecard1({ movie }) {
     var id = movie.id
     const [moviedata, setmoviedata] = useState([])
 
+
     useEffect(() => {
+        console.log(movie)
         fetchvideo(id)
     }, [id])
 
@@ -37,10 +39,11 @@ function Moviecard1({ movie }) {
                 <div className="card card1" onMouseEnter={mousein}  onMouseLeave={mouseout}>
                     <div className="card-body">
                         <h5 className="card-title">{movie.original_title}</h5>
-                        <p className="card-text">release on {movie.release_date}</p>
+                        <p className="card-text">Release on {movie.release_date}</p>
+                        <p className="card-text">Popularity {movie.popularity}</p>
                     </div>
                     {
-                        val ?  <Trailer movie={moviedata}/>  : <img className="card-img-top" src={"https://image.tmdb.org/t/p/original" + movie.poster_path} width={'100px'} height={'300px'} alt="Card image cap"/>
+                        val ?  <Trailer movie={moviedata}/>  : <img className="card-img-top" src={"https://image.tmdb.org/t/p/original" + movie.poster_path} width={'100px'} height={'300px'} alt="Image Not Found."/>
                     }
                 </div>
             </div>
